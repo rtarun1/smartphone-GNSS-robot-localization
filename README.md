@@ -25,16 +25,14 @@ In this we use an iPhone as an GNSS receiver and stream the NMEA data using its 
 
 **Computer setup**
 
-- Now download install pynmea2 using pip install pynmea2.
-- Then update the IP and port number that was shown in the phone to the code.
-- After this the code must give you the lat, long data.
-- Edit the code as per your use.
+- Use <https://github.com/semuconsulting/pynmeagps/blob/master/examples/nmeasocket.py>
+- Don't forget to put your IP.
 
 **Credits** 
 
 <https://www.datacamp.com/tutorial/a-complete-guide-to-socket-programming-in-python>
 
-<https://github.com/Knio/pynmea2>
+<https://github.com/semuconsulting/pynmeagps/tree/master>
 
 <https://www.capsicumdreams.com/gps2ip/>
 
