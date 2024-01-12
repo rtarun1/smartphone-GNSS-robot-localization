@@ -1,22 +1,39 @@
 import socket
-import pynmea2
-
-def run_client():
-    # create a socket object
-    client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-
-    server_ip = "TYPE YOUR IP"  # replace with the server's IP address
-    server_port = 5050  # replace with the server's port number
-    # establish connection with server
-    client.connect((server_ip, server_port))
-
-    while True:
-             # receive message from the server
-        response = client.recv(1024)
-        response = response.decode("utf-8")
-        msg = pynmea2.parse(response)
-                
-        print("Latitude:",msg.latitude,",","Longitude:",msg.longitude)
+from datetime import datetime
+from pynmeagps.nmeareader import NMEAReader
 
 
-run_client()
+def read(stream: socket.socket):
+    """
+    Reads and parses NMEA message from socket stream.
+    """
+
+    msgcount = 0
+    start = datetime.now()
+
+    nmr = NMEAReader(
+        stream,
+    )
+    try:
+        for (_, parsed_data) in nmr:
+            print(parsed_data.lat, ",",parsed_data.lon )
+            msgcount += 1
+    except KeyboardInterrupt:
+        dur = datetime.now() - start
+        secs = dur.seconds + dur.microseconds / 1e6
+        print("Session terminated by user")
+        print(
+            f"{msgcount:,d} messages read in {secs:.2f} seconds:",
+            f"{msgcount/secs:.2f} msgs per second",
+        )
+
+
+if __name__ == "__main__":
+
+    SERVER = "YOUR IP"
+    PORT = 5050
+
+    print(f"Opening socket {SERVER}:{PORT}...")
+    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
+        sock.connect((SERVER, PORT))
+        read(sock)
