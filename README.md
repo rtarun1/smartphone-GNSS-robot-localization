@@ -28,6 +28,14 @@ In this we use an iPhone as an GNSS receiver and stream the NMEA data using its 
 - Use <https://github.com/semuconsulting/pynmeagps/blob/master/examples/nmeasocket.py>
 - Don't forget to put your IP.
 
+**Progress**
+
+![image](https://github.com/rtarun1/GNSS-data-from-mobile-phone-to-Computer-using-Python/assets/22473912/1311e1b0-c10a-44ec-9ae2-7810477bf68d)
+In this image the red dots show the raw gps data and the white dots show the fused data, but as you can see the orientation is not right.
+
+![image](https://github.com/rtarun1/GNSS-data-from-mobile-phone-to-Computer-using-Python/assets/22473912/6b819cfb-dd02-4959-bf28-abda3fb10190)
+After working on the axis of the stereo camera through various iterations, I was able to correct the orientation
+
 **Credits** 
 
 <https://www.datacamp.com/tutorial/a-complete-guide-to-socket-programming-in-python>
